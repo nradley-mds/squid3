@@ -1,7 +1,7 @@
 '''
 This line sets the jinja template and the mapping context.
 '''
-{% from "squid/map.jinja" import map with context %}
+{% from "squid/params.jinja" import map with context %}
 
 '''
 Check for and install squid
