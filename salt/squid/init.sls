@@ -19,7 +19,7 @@ squid_service:
     - name: {{ map.service }}
     - enable: True
     - require:
-      - pkg: {{ pillar['pkgs']['squid'] }}
+      - pkg: squid
     - watch:
       - file: squid_config
       - file: whitelist
