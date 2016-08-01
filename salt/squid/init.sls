@@ -1,18 +1,15 @@
-
-#This line sets the jinja template and the mapping context.
+# This line sets the jinja template and the mapping context.
 
 {% from "squid/params.jinja" import map with context %}
 
-
-#Check for and install squid
+# Check for and install squid
 
 squid:
   pkg.installed:
     - name: {{ map.pkgs }}
 
-
-#Start the squid service but only if the package is present. If the squid config
-#or whitelist change then restart the service.
+# Start the squid service but only if the package is present. If the squid config
+# or whitelist change then restart the service.
 
 squid_service:
   service.running:
@@ -24,10 +21,9 @@ squid_service:
       - file: squid_config
       - file: whitelist
 
-
-#Here we configure the squid configuration. By using pillar data for the file configuration
-#we can select the appropriate squid.conf for the environment automatically. The file will also
-#only be copied after squid is installed which prevents overwrting our changes with defaults.
+# Here we configure the squid configuration. By using pillar data for the file configuration
+# we can select the appropriate squid.conf for the environment automatically. The file will also
+# only be copied after squid is installed which prevents overwrting our changes with defaults.
 
 squid_config:
   file.managed:
@@ -36,10 +32,9 @@ squid_config:
     - require:
       - pkg: squid
 
-
-#Here we configure the squid whitelist configuration. By using pillar data for the file configuration
-#we can select the appropriate whitelist for the environment automatically. The file will also
-#only be copied after squid is installed which prevents overwrting our changes with defaults.
+# Here we configure the squid whitelist configuration. By using pillar data for the file configuration
+# we can select the appropriate whitelist for the environment automatically. The file will also
+# only be copied after squid is installed which prevents overwrting our changes with defaults.
 
 whitelist:
   file.managed:

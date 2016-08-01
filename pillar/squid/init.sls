@@ -1,9 +1,9 @@
-#This file sets the environment that supplies the correct configuration
-#for the minions.
-#Changes to the grains can be made here in order to use alternative parameters for
-#minion selection.
-#An example of a change would be to use id instead of fqdn which would use the hostname rather than the
-#full fqdn. This proves useful where the servername contains either its role or environment.
+# This file sets the environment that supplies the correct configuration
+# for the minions.
+# Changes to the grains can be made here in order to use alternative parameters for
+# minion selection.
+# An example of a change would be to use id instead of fqdn which would use the hostname rather than the
+# full fqdn. This proves useful where the servername contains either its role or environment.
 
 {% if grains['fqdn'].startswith('vag') %}
 conf_squid: salt://squid/files/dev/dev-squid.conf
