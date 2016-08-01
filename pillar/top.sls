@@ -1,4 +1,3 @@
 base:
   '*':
-    - pkg
     - squid
