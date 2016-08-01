@@ -8,7 +8,7 @@ Check for and install squid
 '''
 squid:
   pkg.installed:
-    - name: {{ pillar['pkgs']['squid'] }}
+    - name: {{ map.pkgs }}
 
 '''
 Start the squid service but only if the package is present. If the squid config
