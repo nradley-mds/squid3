@@ -1,19 +1,19 @@
-# This line sets the jinja template and the mapping context.
+# This line sets the jinja template and the paramsping context.
 
-{% from "squid/params.jinja" import map with context %}
+{% from "squid/params.jinja" import params with context %}
 
 # Check for and install squid
 
 squid:
   pkg.installed:
-    - name: {{ map.pkgs }}
+    - name: {{ params.pkgs }}
 
 # Start the squid service but only if the package is present. If the squid config
 # or whitelist change then restart the service.
 
 squid_service:
   service.running:
-    - name: {{ map.service }}
+    - name: {{ params.service }}
     - enable: True
     - require:
       - pkg: squid
@@ -27,7 +27,7 @@ squid_service:
 
 squid_config:
   file.managed:
-    - name: {{ map.conf_dir }}/{{ map.conf_file }}
+    - name: {{ params.conf_dir }}/{{ params.conf_file }}
     - source: {{ pillar['conf_squid'] }}
     - require:
       - pkg: squid
@@ -38,7 +38,7 @@ squid_config:
 
 whitelist:
   file.managed:
-    - name: {{ map.whitelist_dir }}/{{ map.whitelist_file }}
+    - name: {{ params.whitelist_dir }}/{{ params.whitelist_file }}
     - source: {{ pillar['conf_whitelist'] }}
     - require:
       - pkg: squid
